@@ -26,6 +26,6 @@ runs:
         EXPORT_PATH: ${{ inputs.exportPath }}
       run: |
         export HELM_EXPERIMENTAL_OCI=1
-        aws ecr get-login-password --region ap-southeast-1 | helm registry login --username AWS --password-stdin ${ECR_ENDPOINT}
+        aws ecr get-login-password | helm registry login --username AWS --password-stdin ${ECR_ENDPOINT}
         helm chart pull ${ECR_ENDPOINT}/charts/${HELM_CHART}:${VERSION}
         helm chart export ${ECR_ENDPOINT}/charts/${HELM_CHART}:${VERSION} -d ${EXPORT_PATH}
