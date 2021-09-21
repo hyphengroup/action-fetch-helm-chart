@@ -1,0 +1,31 @@
+name: 'Fetch Helm Chart'
+description: 'Pull and Export helm chart'
+
+inputs:
+  chart:
+    description: 'Chart to fetch'
+    required: true
+  version:
+    description: 'Version of Chart to fetch'
+    required: true
+  exportPath:
+    description: 'Path to export chart to'
+    required: true
+    default: .helm/charts/
+  registryUrl: 
+    description: "ECR Registry URL"
+    required: true
+runs:
+  using: 'composite'
+  steps:
+    - shell: bash
+      env:
+        HELM_CHART: ${{ inputs.chart }}
+        VERSION: ${{ inputs.version }}
+        ECR_ENDPOINT: ${{ inputs.registryUrl }}
+        EXPORT_PATH: ${{ inputs.exportPath }}
+      run: |
+        export HELM_EXPERIMENTAL_OCI=1
+        aws ecr get-login-password --region ap-southeast-1 | helm registry login --username AWS --password-stdin ${ECR_ENDPOINT}
+        helm chart pull ${ECR_ENDPOINT}/charts/${HELM_CHART}:${VERSION}
+        helm chart export ${ECR_ENDPOINT}/charts/${HELM_CHART}:${VERSION} -d ${EXPORT_PATH}
