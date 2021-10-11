@@ -1,6 +1,6 @@
 # action-fetch-helm-chart
 
-GitHub action to fetch Helm chart from ECR using OCI (Helm 3.6.x )
+GitHub action to fetch Helm chart from ECR using OCI and explode locally.
 
 > **NOTE**: This action uses a workaround for v3.7.0 see [github issue](https://github.com/helm/helm/issues/10122#issuecomment-922900257)
 
@@ -22,18 +22,10 @@ GitHub action to fetch Helm chart from ECR using OCI (Helm 3.6.x )
 Example logs:
 
 ```
-Login succeeded
-0.1.0: Pulling from ***/charts/hyphen-service
-ref:     ***/charts/hyphen-service:0.1.0
-digest:  96184f4838f0676a214813aecd816a91cd87a097a3bf240888689f984574d9d0
-size:    2.6 KiB
-name:    hyphen-service
-version: 0.1.0
-Status: Downloaded newer chart for ***/charts/hyphen-service:0.1.0
-ref:     ***/charts/hyphen-service:0.1.0
-digest:  96184f4838f0676a214813aecd816a91cd87a097a3bf240888689f984574d9d0
-size:    2.6 KiB
-name:    hyphen-service
-version: 0.1.0
-Exported chart to .helm/charts/hyphen-service/
+Login Succeeded
+Pulled: ***/charts/hyphen-service:0.1.0
+Digest: sha256:6f3cd7baf83a9d3771df37bc27103c2fbcdaa6b026499d954fd754b6d5c47961
+hyphen-service/Chart.yaml
+hyphen-service/values.yaml
+...
 ```
