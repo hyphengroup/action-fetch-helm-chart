@@ -2,9 +2,7 @@
 
 GitHub action to fetch Helm chart from ECR using OCI (Helm 3.6.x )
 
-> **NOTE**: This action is **not compatible with Helm 3.7.x** which 
-> adds support for `oci://` protocol and removes special `chart` 
-> subcommands
+> **NOTE**: This action uses a workaround for v3.7.0 see [github issue](https://github.com/helm/helm/issues/10122#issuecomment-922900257)
 
 ## Usage
 
