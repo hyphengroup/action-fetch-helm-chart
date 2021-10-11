@@ -25,7 +25,10 @@ runs:
         ECR_ENDPOINT: ${{ inputs.registryUrl }}
         EXPORT_PATH: ${{ inputs.exportPath }}
       run: |
+        # helm 3.7.0
+        # https://github.com/actions/virtual-environments/pull/4110
+        # https://github.com/helm/helm/issues/10122#issuecomment-922900257
         export HELM_EXPERIMENTAL_OCI=1
         aws ecr get-login-password | helm registry login --username AWS --password-stdin ${ECR_ENDPOINT}
-        helm chart pull ${ECR_ENDPOINT}/charts/${HELM_CHART}:${VERSION}
-        helm chart export ${ECR_ENDPOINT}/charts/${HELM_CHART}:${VERSION} -d ${EXPORT_PATH}
+        helm pull oci://${ECR_ENDPOINT}/charts/${HELM_CHART} --version ${VERSION}
+        mkdir -p ${EXPORT_PATH} && tar -zxvf "${HELM_CHART}-${VERSION}.tgz" -C ${EXPORT_PATH}

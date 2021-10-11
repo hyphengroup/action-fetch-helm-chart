@@ -14,7 +14,7 @@ GitHub action to fetch Helm chart from ECR using OCI (Helm 3.6.x )
         aws-access-key-id: ${{ secrets.ECR_AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.ECR_AWS_SECRET_ACCESS_KEY }}
         aws-region: ap-southeast-1
-    - uses: hyphengroup/action-fetch-helm-chart@v0.1.0
+    - uses: hyphengroup/action-fetch-helm-chart@v0.1.2
       with:
         chart: hyphen-service
         version: 0.1.0
