@@ -1,6 +1,8 @@
-# action-fetch-helm-chart
+# (deprecated) action-fetch-helm-chart
 
-GitHub action to fetch Helm chart from ECR using OCI and explode locally.
+We no longer maintain this, our CI supports `OCI://` protocol for fetching Helm Charts
+
+GitHub action to fetch Helm chart from ECR using OCI and explode locally. 
 
 > **NOTE**: This action uses a workaround for v3.7.0 see [github issue](https://github.com/helm/helm/issues/10122#issuecomment-922900257)
 
